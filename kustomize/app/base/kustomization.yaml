@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ./customer
 - ./preference
-- ./recommendation
+#- ./recommendation
