@@ -3,4 +3,4 @@ apiVersion: "v1"
 kind: "ServiceAccount"
 metadata:
   name: "recommendation"
-  namespace: canary-release
+  namespace: blue-green

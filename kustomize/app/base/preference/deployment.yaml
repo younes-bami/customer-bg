@@ -3,7 +3,7 @@ apiVersion: "v1"
 kind: "ServiceAccount"
 metadata:
   name: "preference"
-  namespace: canary-release
+  namespace: blue-green
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -12,7 +12,7 @@ metadata:
     app: preference
     version: v1
   name: preference-v1
-  namespace: canary-release
+  namespace: blue-green
 spec:
   replicas: 1
   selector:

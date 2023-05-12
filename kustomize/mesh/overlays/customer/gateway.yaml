@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: customer-gateway
-  namespace: canary-release
+  namespace: blue-green
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -12,16 +12,16 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "customer1.localhost"
+    - "customer2.localhost"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: customer-gateway
-  namespace: canary-release
+  namespace: blue-green
 spec:
   hosts:
-  - "customer1.localhost"
+  - "customer2.localhost"
   gateways:
   - customer-gateway
   http:
