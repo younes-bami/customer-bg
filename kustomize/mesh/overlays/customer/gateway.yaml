@@ -1,0 +1,37 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: customer-gateway
+  namespace: canary-release
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "customer1.localhost"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: customer-gateway
+  namespace: canary-release
+spec:
+  hosts:
+  - "customer1.localhost"
+  gateways:
+  - customer-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /customer
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: customer
+        port:
+          number: 8080

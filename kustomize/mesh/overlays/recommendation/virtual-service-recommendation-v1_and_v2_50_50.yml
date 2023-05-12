@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: recommendation
+spec:
+  hosts:
+  - recommendation
+  http:
+  - name: primary
+    route:
+     - destination:
+         host: recommendation
+         subset: canary
+       weight: 100
+     - destination:
+         host: recommendation
+         subset: stable
+       weight: 0
+---

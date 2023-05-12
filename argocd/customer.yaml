@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: customer-bg
+  namespace: argocd
+spec:
+  destination:
+    namespace: blue-green
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize
+    repoURL: https://github.com/younes-bami/customer-bg.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - ApplyOutOfSyncOnly=true
+  ignoreDifferences:
+  - group: networking.istio.io
+    kind: VirtualService
+    jsonPointers:
+    - /spec/http/0
