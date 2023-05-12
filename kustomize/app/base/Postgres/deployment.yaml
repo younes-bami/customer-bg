@@ -16,6 +16,7 @@ spec:
     metadata:
       labels:
         app: customer
+        version: v1
     spec:
       containers:
         - name: postgres
