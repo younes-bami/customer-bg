@@ -6,7 +6,6 @@ metadata:
     version: v5
   name: recommendation-v5
   namespace: blue-green
-
 spec:
   replicas: 1
   selector:
