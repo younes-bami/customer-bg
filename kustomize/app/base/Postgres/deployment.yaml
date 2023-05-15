@@ -4,18 +4,18 @@ metadata:
   name: postgres
   namespace: blue-green
   labels:
-    app: customer
+    app: postgres
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customer
+      app: postgres
       version: v1
   template:
     metadata:
       labels:
-        app: customer
+        app: postgres
         version: v1
     spec:
       containers:
